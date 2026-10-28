@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DentaCita - Sistema de citas dentales</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">DentaCita <small>Clínica Dental Sonrisa Sana</small></div>
+    <nav id="menu">
+      <button data-view="inicio" class="active">Inicio</button>
+      <button data-view="citas">Citas</button>
+      <button data-view="clientes">Pacientes</button>
+      <button data-view="servicios">Tratamientos</button>
+      <button data-view="agenda">Agenda</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="view active">
+      <h1>Bienvenido a DentaCita</h1>
+      <p class="lead">Agenda, consulta y administra las citas de pacientes de la clínica dental en un solo lugar.</p>
+      <div class="cards">
+        <div class="card"><span id="kpi-total">0</span><p>Citas registradas</p></div>
+        <div class="card"><span id="kpi-pend">0</span><p>Pendientes</p></div>
+        <div class="card"><span id="kpi-conf">0</span><p>Confirmadas</p></div>
+        <div class="card"><span id="kpi-canc">0</span><p>Canceladas</p></div>
+      </div>
+      <div class="actions">
+        <button class="btn" data-go="citas">+ Agendar nueva cita</button>
+        <button class="btn secondary" data-go="agenda">Ver agenda semanal</button>
+      </div>
+    </section>
+
+    <!-- CITAS -->
+    <section id="citas" class="view">
+      <h1>Citas</h1>
+      <form id="form-cita" class="form">
+        <label>Paciente
+          <select id="f-cliente" required></select>
+        </label>
+        <label>Tratamiento
+          <select id="f-servicio" required></select>
+        </label>
+        <label>Fecha
+          <input type="date" id="f-fecha" required>
+        </label>
+        <label>Hora
+          <select id="f-hora" required>
+            <option>09:00</option><option>10:00</option><option>11:00</option>
+            <option>12:00</option><option>15:00</option><option>16:00</option><option>17:00</option>
+          </select>
+        </label>
+        <button class="btn" type="submit">Agendar cita</button>
+      </form>
+      <p id="msg" class="msg" role="status"></p>
+
+      <div class="filter">
+        <label>Filtrar por estado:
+          <select id="filtro">
+            <option value="">Todos</option>
+            <option>Pendiente</option><option>Confirmada</option><option>Cancelada</option>
+          </select>
+        </label>
+      </div>
+      <table>
+        <thead><tr><th>Folio</th><th>Paciente</th><th>Tratamiento</th><th>Fecha</th><th>Hora</th><th>Estado</th><th>Acciones</th></tr></thead>
+        <tbody id="tabla-citas"></tbody>
+      </table>
+    </section>
+
+    <!-- PACIENTES -->
+    <section id="clientes" class="view">
+      <h1>Pacientes</h1>
+      <form id="form-cliente" class="form">
+        <label>Nombre<input id="c-nombre" required></label>
+        <label>Teléfono<input id="c-tel" required></label>
+        <label>Correo<input id="c-mail" type="email" required></label>
+        <button class="btn" type="submit">Registrar paciente</button>
+      </form>
+      <table>
+        <thead><tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Correo</th></tr></thead>
+        <tbody id="tabla-clientes"></tbody>
+      </table>
+    </section>
+
+    <!-- TRATAMIENTOS -->
+    <section id="servicios" class="view">
+      <h1>Tratamientos</h1>
+      <table>
+        <thead><tr><th>Código</th><th>Tratamiento</th><th>Duración</th><th>Precio</th></tr></thead>
+        <tbody id="tabla-servicios"></tbody>
+      </table>
+    </section>
+
+    <!-- AGENDA -->
+    <section id="agenda" class="view">
+      <h1>Agenda semanal</h1>
+      <p class="lead">Las citas canceladas no ocupan horario.</p>
+      <div class="scroll">
+        <table class="grid" id="tabla-agenda"></table>
+      </div>
+    </section>
+  </main>
+
+  <footer>Prototipo académico · Examen: Proyecto en construccion</footer>
+  <script src="app.js"></script>
+</body>
+</html>
